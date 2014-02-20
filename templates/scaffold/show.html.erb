@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1><%%= t('<%= singular_table_name %>.<%= name %>') %></h1>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+  <% attributes.each do |attribute| -%>
+    <tr>
+      <th class="span2"><i class="icon-tag"></i> <%%= t('<%= singular_table_name %>.<%= attribute.name %>') %>:</th>
+      <td><%%= @<%= singular_table_name %>.<%= attribute.name %> %></td>
+    </tr>
+  <% end -%>
+</table>
+
+<div class="form-actions">
+  <%%= link_to '返回', <%= index_helper %>_path, :class => 'btn' %>
+  <%%= link_to '編輯', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => 'btn' %> 
+  <%%= link_to '刪除', @<%= singular_table_name %>, method: :delete, data: { confirm: '確定刪除？' }, :class => 'btn btn-danger' %>
+</div>
