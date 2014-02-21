@@ -27,7 +27,7 @@ gsub_file 'app/assets/javascripts/application.js', /= require turbolinks/, " req
 
 if backend
   gem 'devise'
-  gem 'twitter-bootstrap-rails'
+  gem 'bootstrap-sass'
   gem 'ransack'
   gem 'carrierwave'
   gem 'mysql2'
@@ -35,7 +35,6 @@ if backend
 end
 
 gem 'kaminari'
-gem 'therubyracer' # or install nodejs
 gem 'simple_form'
 gem 'google-analytics-rails'
 gem_group :development, :test do
@@ -51,9 +50,9 @@ if backend
   generate('devise:install')
   generate('devise Admin')
   generate('devise:views')
-  generate('bootstrap:install')
-  generate('bootstrap:layout', 'application fixed -f')
   generate('kaminari:config')
+  # bootstrap 3.x support not ready yet
+  # generate('simple_form:install', '--bootstrap3')
   rake 'db:migrate'
   
   # add default admin account
@@ -77,28 +76,22 @@ if backend
   gsub_file 'app/models/admin.rb', /devise :database_authenticatable, :registerable,/, "devise :database_authenticatable, #:registerable,"
   gsub_file 'config/routes.rb', /devise_for :admins/, "devise_for :admins, :skip => [:registration]"
   
-  # devise layout
-  gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Sign in"/, 'f.submit "Sign in", :class => "btn"'
-  gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Send me reset password instructions"/, 'f.submit "Send me reset password instructions", :class => "btn"'
-  gsub_file 'app/views/devise/passwords/edit.html.erb', /f.submit "Change my password"/, 'f.submit "Change my password", :class => "btn"'
-  gsub_file 'app/views/devise/confirmations/new.html.erb', /f.submit "Resend confirmation instructions"/, 'f.submit "Resend confirmation instructions", :class => "btn"'
-  gsub_file 'app/views/devise/registrations/edit.html.erb', /f.submit "Update"/, 'f.submit "Update", :class => "btn"'
-  gsub_file 'app/views/devise/registrations/new.html.erb', /f.submit "Sign up"/, 'f.submit "Sign up", :class => "btn"'
-  gsub_file 'app/views/devise/unlocks/new.html.erb', /f.submit "Resend unlock instructions"/, 'f.submit "Resend unlock instructions", :class => "btn"'
-  
   # scaffold without scaffold.css
   gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.assets.version = '1.0'\n    config.generators do |g|\n        g.stylesheets false\n    end"
   
   # apply css
-  append_file 'app/assets/stylesheets/application.css', <<-CODE
-//= require admin
-//= require admin_responsive
-input, textarea { width: auto; }
+  create_file 'app/assets/stylesheets/admin.scss', <<-CODE
+//= require_self
+//= require bootstrap
+//input, textarea { width: auto; }
 body { padding-top: 60px; }
 CODE
   
+  # apply js
+  create_file 'app/assets/javascripts/admin.js', '//= require bootstrap'
+  
   # fetch scaffold template
-  directory 'templates/scaffold', 'lib/templates/erb/scaffold'
+  directory 'templates/scaffold', 'lib/templates/erb/scaffold', :force => true
   
   # fetch scaffold controller with kaminari
   directory 'templates/scaffold_controller', 'lib/templates/rails/scaffold_controller'
@@ -110,7 +103,7 @@ CODE
   directory 'locales', 'config/locales', :force => true
   
   # fetch css
-  directory 'stylesheets', 'app/assets/stylesheets'
+  # directory 'stylesheets', 'app/assets/stylesheets'
 end
 
 ## Route
