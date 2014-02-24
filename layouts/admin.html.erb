@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Site Title" %></title>
-    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= stylesheet_link_tag "admin" if devise_controller? or params[:controller] == 'admin' %>
     <%= csrf_meta_tags %>
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -60,7 +61,7 @@
       </div><!--/content-->
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Company 2014</p>
       </footer>
 
     </div> <!-- /container -->
@@ -69,6 +70,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-
+    <%= javascript_include_tag "admin" if devise_controller? or params[:controller] == 'admin' %>
   </body>
 </html>
