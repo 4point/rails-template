@@ -1,3 +1,6 @@
+name = ask("What is the name of this site ?")
+create_file "config/settings.yml", "name: '#{name}'"
+
 ## Remove files
 # no require_tree
 gsub_file 'app/assets/javascripts/application.js', /= require_tree/, " require_tree"

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Site Title" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : Settings.name %></title>
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= stylesheet_link_tag "admin" if devise_controller? or params[:controller] == 'admin' %>
     <%= csrf_meta_tags %>
