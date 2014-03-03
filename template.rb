@@ -20,6 +20,7 @@ copy_file 'initializers/settings.rb', 'config/initializers/settings.rb', :force 
 
 ## Generator
 generate(:controller, "page index")
+generate(:controller, "admin index")
 
 ## Gems
 # Remove Turbolinks
@@ -69,7 +70,7 @@ gsub_file 'config/initializers/devise.rb', /config.sign_out_via = :delete/, "con
 
 # cancel devise admin registration
 gsub_file 'app/models/admin.rb', /devise :database_authenticatable, :registerable,/, "devise :database_authenticatable, #:registerable,"
-gsub_file 'config/routes.rb', /devise_for :admins/, "devise_for :admins, :skip => [:registration]"
+gsub_file 'config/routes.rb', /devise_for :admins/, "get 'admin' => 'admin#index'\n\tdevise_for :admins, :skip => [:registration]"
 
 # devise layout
 gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Sign in"/, 'f.submit "Sign in", :class => "btn"'

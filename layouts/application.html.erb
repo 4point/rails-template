@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : Settings.name %></title>
-    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= stylesheet_link_tag "application", media: "all" %>
     <%= csrf_meta_tags %>
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -32,7 +32,7 @@
       </div><!--/content-->
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; <%= Settings.name %></p>
       </footer>
 
     </div> <!-- /container -->
