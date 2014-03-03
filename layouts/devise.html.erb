@@ -5,13 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= content_for?(:title) ? yield(:title) : Settings.name %></title>
-    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= stylesheet_link_tag "admin" %>
     <%= csrf_meta_tags %>
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <!--
-    <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
-    -->
+    <link rel="shortcut icon" href="/favicon.ico" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -28,15 +25,16 @@
           <%= yield %>
         </div>
       </div><!--/row-->
+
       <footer>
         <p>&copy; <%= Settings.name %></p>
       </footer>
-    </div><!--/container-->
+
+    </div> <!-- /container -->
 
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-
+    <%= javascript_include_tag "admin" %>
   </body>
 </html>

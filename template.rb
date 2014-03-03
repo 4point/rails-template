@@ -84,14 +84,6 @@ gsub_file 'app/views/devise/unlocks/new.html.erb', /f.submit "Resend unlock inst
 # scaffold without scaffold.css
 gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.assets.version = '1.0'\n    config.generators do |g|\n        g.stylesheets false\n    end"
 
-# apply css
-append_file 'app/assets/stylesheets/application.css', <<-CODE
-//= require admin
-//= require admin_responsive
-input, textarea { width: auto; }
-body { padding-top: 60px; }
-CODE
-
 # fetch scaffold template
 #directory 'templates/scaffold', 'lib/templates/erb/scaffold'
 # fetch scaffold controller with kaminari
@@ -108,6 +100,9 @@ directory 'locales', 'config/locales', :force => true
 
 # fetch css
 directory 'stylesheets', 'app/assets/stylesheets'
+
+# fetch js
+directory 'javascripts', 'app/assets/javascripts', :force => true
 
 # layouts
 directory 'layouts', 'app/views/layouts', :force => true
