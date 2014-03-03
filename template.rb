@@ -16,6 +16,7 @@ def source_paths
 end
 
 copy_file 'helpers/application_helper.rb', 'app/helpers/application_helper.rb', :force => true
+copy_file 'initializers/settings.rb', 'config/initializers/settings.rb', :force => true
 
 ## Generator
 generate(:controller, "page index")
@@ -58,6 +59,7 @@ rake 'db:seed'
 
 # add auth to default app controller
 copy_file 'controllers/application_controller.rb', 'app/controllers/application_controller.rb', :force => true
+copy_file 'controllers/admin_controller.rb', 'app/controllers/admin_controller.rb', :force => true
 
 # kaminari per page 10
 gsub_file 'config/initializers/kaminari_config.rb', /# config.default_per_page = 25/, "config.default_per_page = 10"
@@ -90,10 +92,12 @@ body { padding-top: 60px; }
 CODE
 
 # fetch scaffold template
-directory 'templates/scaffold', 'lib/templates/erb/scaffold'
-
+#directory 'templates/scaffold', 'lib/templates/erb/scaffold'
 # fetch scaffold controller with kaminari
-directory 'templates/scaffold_controller', 'lib/templates/rails/scaffold_controller'
+#directory 'templates/scaffold_controller', 'lib/templates/rails/scaffold_controller'
+
+# fetch lib (and templates)
+directory 'lib', 'lib'
 
 # fetch kaminari views
 directory 'views/kaminari', 'app/views/kaminari'

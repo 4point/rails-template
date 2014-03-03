@@ -1,0 +1,31 @@
+<h1>Listing <%= plural_table_name %></h1>
+
+<table>
+  <thead>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%= attribute.human_name %></th>
+<% end -%>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%% @<%= plural_table_name.gsub('admin_', '') %>.each do |<%= singular_table_name.gsub('admin_', '') %>| %>
+      <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <td><%%= <%= singular_table_name.gsub('admin_', '') %>.<%= attribute.name %> %></td>
+<% end -%>
+        <td><%%= link_to 'Show', <%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>) %></td>
+        <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>) %></td>
+        <td><%%= link_to 'Destroy', <%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>

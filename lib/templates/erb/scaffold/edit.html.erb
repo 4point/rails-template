@@ -1,0 +1,6 @@
+<h1>Editing <%= singular_table_name.gsub('admin_', '') %></h1>
+
+<%%= render 'form' %>
+
+<%%= link_to 'Show', <%= singular_table_name %>_path(@<%= singular_table_name.gsub('admin_', '') %>) %> |
+<%%= link_to 'Back', <%= index_helper %>_path %>
