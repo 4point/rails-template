@@ -6,7 +6,7 @@
     end
 -%>
 
-<%%= form_for(@<%= singular_table_name.gsub('admin_', '') %>, :url => _form_url ) do |f| %>
+<%%= form_for(@<%= singular_table_name.gsub('admin_', '') %>, :url => _form_url, :html => {:class => 'form-horizontal', :role => 'form'} ) do |f| %>
   <%% if @<%= singular_table_name.gsub('admin_', '') %>.errors.any? %>
     <div id="error_explanation">
       <h2><%%= pluralize(@<%= singular_table_name.gsub('admin_', '') %>.errors.count, "error") %> prohibited this <%= singular_table_name.gsub('admin_', '') %> from being saved:</h2>
@@ -20,26 +20,35 @@
   <%% end %>
 
 <% attributes.each do |attribute| -%>
-  <div class="field">
+  <div class="form-control">
 <% if attribute.password_digest? -%>
-    <%%= f.label :password %><br>
-    <%%= f.password_field :password %>
+  <%%= f.label :password, t 'admin.password', :class => 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%%= f.password_field :password, t 'admin.password', :class => 'form-control' %>
+      </div>
   </div>
   <div>
-    <%%= f.label :password_confirmation %><br>
-    <%%= f.password_field :password_confirmation %>
+    <%%= f.label :password_confirmation, t 'admin.password_confirmation', :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%%= f.password_field :password_confirmation, t 'admin.password_confirmation', :class => 'form-control' %>
+    </div>
 <% else -%>
   <%- if attribute.reference? -%>
-    <%%= f.label :<%= attribute.column_name %> %><br>
-    <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+    <%%= f.label :<%= attribute.column_name %>, t('admin.<%= singular_table_name.gsub("admin_", "") %>'.'<%= attribute.column_name %>'), :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, :class => 'form-control', :required => true %>
+    </div>
   <%- else -%>
-    <%%= f.label :<%= attribute.name %> %><br>
-    <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
+    <%%= f.label :<%= attribute.name %>, t('admin.<%= singular_table_name.gsub("admin_", "") %>'.'<%= attribute.name %>'), :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => 'form-control', :required => true %>
+    </div>
   <%- end -%>
 <% end -%>
   </div>
 <% end -%>
   <div class="actions">
-    <%%= f.submit %>
+    <%%= f.submit t('admin.submit'), :class => 'btn btn-primary' %>
+    <%%= link_to t('admin.cancel'), <%= index_helper %>_path, :class => 'btn btn-default' %>
   </div>
 <%% end %>

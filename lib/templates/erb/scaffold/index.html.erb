@@ -1,4 +1,7 @@
-<h1>Listing <%= plural_table_name %></h1>
+<div class="page-header">
+  <h1><%%= t('admin.<%= singular_table_name.gsub("admin_", "") %>.<%= name %>') %> <%%= t('admin.list') %>
+</h1>
+</div>
 
 <table>
   <thead>

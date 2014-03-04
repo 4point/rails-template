@@ -51,6 +51,7 @@ generate('devise Admin')
 generate('devise:views')
 generate('bootstrap:install')
 generate('bootstrap:layout', 'application fixed -f')
+generate('simple_form:install', '--bootstrap')
 generate('kaminari:config')
 rake 'db:migrate'
 
@@ -90,7 +91,7 @@ gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.asse
 #directory 'templates/scaffold_controller', 'lib/templates/rails/scaffold_controller'
 
 # fetch lib (and templates)
-directory 'lib', 'lib'
+directory 'lib', 'lib', :force => true
 
 # fetch kaminari views
 directory 'views/kaminari', 'app/views/kaminari'
