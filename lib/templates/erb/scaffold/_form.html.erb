@@ -20,7 +20,7 @@
   <%% end %>
 
 <% attributes.each do |attribute| -%>
-  <div class="form-control">
+  <div class="form-group">
 <% if attribute.password_digest? -%>
   <%%= f.label :password, t 'admin.password', :class => 'col-sm-2 control-label' %>
       <div class="col-sm-10">
@@ -47,7 +47,7 @@
 <% end -%>
   </div>
 <% end -%>
-  <div class="actions">
+  <div class="well">
     <%%= f.submit t('admin.submit'), :class => 'btn btn-primary' %>
     <%%= link_to t('admin.cancel'), <%= index_helper %>_path, :class => 'btn btn-default' %>
   </div>

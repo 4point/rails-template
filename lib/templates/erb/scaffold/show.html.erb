@@ -1,8 +1,6 @@
 <div class="page-header">
-  <h1><%%= t ('admin.<%= singular_table_name.gsub("admin_", "") %>.<%= name %>') %></h1>
+  <h1><%%= t('admin.show') %> <%%= t('admin.<%= singular_table_name.gsub("admin_", "") %>.<%= singular_table_name.gsub("admin_", "") %>') %></h1>
 </div>
-
-<p id="notice"><%%= notice %></p>
 
 <table class="table table-bordered table-striped table-hover">
   <% attributes.reject(&:password_digest?).each do |attribute| -%>
