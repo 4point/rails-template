@@ -74,13 +74,13 @@ gsub_file 'app/models/admin.rb', /devise :database_authenticatable, :registerabl
 gsub_file 'config/routes.rb', /devise_for :admins/, "get 'admin' => 'admin#index'\n\tdevise_for :admins, :skip => [:registration]"
 
 # devise layout
-gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Sign in"/, 'f.submit "Sign in", :class => "btn"'
-gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Send me reset password instructions"/, 'f.submit "Send me reset password instructions", :class => "btn"'
-gsub_file 'app/views/devise/passwords/edit.html.erb', /f.submit "Change my password"/, 'f.submit "Change my password", :class => "btn"'
-gsub_file 'app/views/devise/confirmations/new.html.erb', /f.submit "Resend confirmation instructions"/, 'f.submit "Resend confirmation instructions", :class => "btn"'
-gsub_file 'app/views/devise/registrations/edit.html.erb', /f.submit "Update"/, 'f.submit "Update", :class => "btn"'
-gsub_file 'app/views/devise/registrations/new.html.erb', /f.submit "Sign up"/, 'f.submit "Sign up", :class => "btn"'
-gsub_file 'app/views/devise/unlocks/new.html.erb', /f.submit "Resend unlock instructions"/, 'f.submit "Resend unlock instructions", :class => "btn"'
+gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Sign in"/, 'f.submit "Sign in", :class => "btn btn-primary"'
+gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Send me reset password instructions"/, 'f.submit "Send me reset password instructions", :class => "btn btn-primary"'
+gsub_file 'app/views/devise/passwords/edit.html.erb', /f.submit "Change my password"/, 'f.submit "Change my password", :class => "btn btn-primary"'
+gsub_file 'app/views/devise/confirmations/new.html.erb', /f.submit "Resend confirmation instructions"/, 'f.submit "Resend confirmation instructions", :class => "btn btn-primary"'
+gsub_file 'app/views/devise/registrations/edit.html.erb', /f.submit "Update"/, 'f.submit "Update", :class => "btn btn-primary"'
+gsub_file 'app/views/devise/registrations/new.html.erb', /f.submit "Sign up"/, 'f.submit "Sign up", :class => "btn btn-primary"'
+gsub_file 'app/views/devise/unlocks/new.html.erb', /f.submit "Resend unlock instructions"/, 'f.submit "Resend unlock instructions", :class => "btn btn-primary"'
 
 # scaffold without scaffold.css
 gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.assets.version = '1.0'\n    config.generators do |g|\n        g.stylesheets false\n    end"
@@ -90,22 +90,13 @@ gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.asse
 # fetch scaffold controller with kaminari
 #directory 'templates/scaffold_controller', 'lib/templates/rails/scaffold_controller'
 
-# fetch lib (and templates)
+# copy files
 directory 'lib', 'lib', :force => true
-
-# fetch kaminari views
+directory 'script', 'script', :force => true
 directory 'views/kaminari', 'app/views/kaminari'
-
-# fetch zh-TW locales
 directory 'locales', 'config/locales', :force => true
-
-# fetch css
 directory 'stylesheets', 'app/assets/stylesheets'
-
-# fetch js
 directory 'javascripts', 'app/assets/javascripts', :force => true
-
-# layouts
 directory 'layouts', 'app/views/layouts', :force => true
 
 ## Route
