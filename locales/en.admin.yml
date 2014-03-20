@@ -1,0 +1,10 @@
+en:
+  admin:
+    new: New
+    edit: Edit
+    back: Back
+    cancel: Cancel
+    submit: Submit
+    confirm: Confirm
+    confirm_delete: Confirm Delete?
+
