@@ -1,11 +1,11 @@
-"zh-TW":
+zh-TW:
   admin:
     list: 列表
     edit: 編輯
     delete: 刪除
     new: 新增
-    submit: 確定
     cancel: 取消
+    submit: 確定送出
     confirm_delete: 確定刪除？
     back: 返回
     show: 查看

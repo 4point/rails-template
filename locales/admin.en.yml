@@ -1,0 +1,14 @@
+en:
+  admin:
+    list: List
+    edit: Edit
+    delete: Delete
+    new: New
+    cancel: Cancel
+    submit: Submit
+    confirm_delete: Confirm Delete?
+    back: Back
+    show: Show
+    action: Action
+    _no: No.
+
