@@ -12,4 +12,7 @@ zh-TW:
     show: 查看
     action: 操作
     _no: 編號
+    created_done: 建立成功
+    updated_done: 更新成功
+    deleted_done: 刪除成功
 

@@ -12,4 +12,7 @@ en:
     show: Show
     action: Action
     _no: No.
+    created_done: was successfully created.
+    updated_done: was successfully updated.
+    deleted_done: was successfully destroyed.
 
