@@ -29,11 +29,9 @@
         <td><%%= <%= singular_table_name.gsub('admin_', '') %>.<%= attribute.name %> %></td>
 <% end -%>
         <td>
-          <div class="btn-group">
-            <%%= link_to t('admin.show'), <%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>), :class => 'btn btn-default btn-sm' %>
-            <%%= link_to t('admin.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>), :class => 'btn btn-default btn-sm' %>
-            <%%= link_to t('admin.delete'), <%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>), method: :delete, data: { confirm: t('admin.confirm_delete') }, :class => 'btn btn-danger btn-sm' %>
-          </div>
+          <%%= link_to t('admin.show'), <%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>), :class => 'btn btn-default btn-sm' %>
+          <%%= link_to t('admin.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>), :class => 'btn btn-default btn-sm' %>
+          <%%= link_to t('admin.delete'), <%= singular_table_name %>_path(<%= singular_table_name.gsub('admin_', '') %>), method: :delete, data: { confirm: t('admin.confirm_delete') }, :class => 'btn btn-danger btn-sm' %>
         </td>
       </tr>
     <%% end %>

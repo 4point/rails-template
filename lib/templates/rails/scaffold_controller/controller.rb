@@ -16,7 +16,9 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
 
   # GET <%= route_url %>
   def index
-    @<%= clean_word plural_table_name %> = <%= clean_word orm_class.all(class_name) %>
+    @search_key = (<%= clean_word class_name -%>.column_names - ['id', 'created_at', 'updated_at']).join('_or_') + '_cont'
+    @search = <%= clean_word class_name -%>.search(params[:q])
+    @<%= clean_word plural_table_name %> = @search.result.page(params[:page])
   end
 
   # GET <%= route_url %>/1
