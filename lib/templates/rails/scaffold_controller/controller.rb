@@ -1,3 +1,4 @@
+# coding: utf-8
 <%
   def clean_word(str)
     str1 = 'Admin::'
@@ -39,7 +40,7 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
     @<%= clean_word singular_table_name %> = <%= clean_word orm_class.build(class_name, "#{singular_table_name}_params") %>
 
     if @<%= clean_word orm_instance.save %>
-      redirect_to <%= singular_table_name %>_path(@<%= clean_word singular_table_name %>.id), notice: <%= "'#{human_name} was successfully created.'" %>
+      redirect_to <%= singular_table_name %>_path(@<%= clean_word singular_table_name %>.id), notice: <%= "'#{human_name} '" %> + "#{I18n.t('admin.created_done')}"
     else
       render action: 'new'
     end
@@ -48,7 +49,7 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
   # PATCH/PUT <%= route_url %>/1
   def update
     if @<%= clean_word orm_instance.update("#{singular_table_name}_params") %>
-      redirect_to <%= singular_table_name %>_path, notice: <%= "'#{human_name} was successfully updated.'" %>
+      redirect_to <%= singular_table_name %>_path, notice: <%= "'#{human_name} '" %> + "#{I18n.t('admin.updated_done')}"
     else
       render action: 'edit'
     end
@@ -57,7 +58,7 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
   # DELETE <%= route_url %>/1
   def destroy
     @<%= clean_word orm_instance.destroy %>
-    redirect_to <%= table_name %>_path, notice: <%= "'#{human_name} was successfully destroyed.'" %>
+    redirect_to <%= table_name %>_path, notice: <%= "'#{human_name} '" %> + "#{I18n.t('admin.deleted_done')}"
   end
 
   private
