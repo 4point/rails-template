@@ -3,15 +3,24 @@
 </h1>
 </div>
 
-<%%= link_to "#{t("admin.new")}", new_<%= singular_table_name %>_path, :class => 'btn btn-default btn-primary' %>
-<br>
-<br>
+<div>
+  <div class="pull-left">
+    <%%= link_to t('admin.new') + t('admin.<%= singular_table_name.gsub("admin_", "") %>.<%= singular_table_name.gsub("admin_", "") %>'), new_<%= singular_table_name %>_path, :class => 'btn btn-primary' %>
+  </div>
+  <div class="pull-right">
+    <%%= search_form_for(@search, :url => <%= plural_table_name %>_path) do |f| %>
+      <%%= f.text_field :"#{@search_key}", :style => "margin-top:10px;" %>
+      <%%= f.submit "#{t('admin.search')}", :class => "btn btn-default btn-sm" %> 
+    <%% end %>
+  </div>
+  <p style="clear:both;"></p>
+</div>
 
 <div class="table-responsive">
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>No.</th>
+      <th><%%= t('admin._no') %></th>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
       <th><%= attribute.human_name %></th>
 <% end -%>
@@ -38,3 +47,5 @@
   </tbody>
 </table>
 </div>
+
+<%%= paginate @<%= plural_table_name.gsub('admin_', '') %> %>
