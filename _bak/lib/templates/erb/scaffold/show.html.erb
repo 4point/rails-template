@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1><%%= t('admin.show') %> <%%= t('admin.<%= singular_table_name.gsub("admin_", "") %>.<%= singular_table_name.gsub("admin_", "") %>') %></h1>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+  <% attributes.reject(&:password_digest?).each do |attribute| -%>
+    <tr>
+      <th class="col-sm-2"><%%= t('admin.<%= singular_table_name.gsub("admin_", "") %>.<%= attribute.name %>') %>:</th>
+      <td><%%= @<%= singular_table_name.gsub('admin_', '') %>.<%= attribute.name %> %></td>
+    </tr>
+<% end -%>
+</table>
+
+<div class="well">
+  <%%= link_to t('admin.back'), <%= index_helper %>_path, :class => 'btn btn-default' %>
+  <%%= link_to t('admin.edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name.gsub('admin_', '') %>), :class => 'btn btn-default' %>
+  <%%= link_to t('admin.delete'), <%= singular_table_name %>_path(@<%= singular_table_name.gsub('admin_', '') %>), method: :delete, data: { confirm: t('admin.confirm_delete') }, :class => 'btn btn-danger' %>
+</div>

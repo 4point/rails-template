@@ -71,7 +71,7 @@ gsub_file 'config/initializers/devise.rb', /config.sign_out_via = :delete/, "con
 
 # cancel devise admin registration
 gsub_file 'app/models/admin.rb', /devise :database_authenticatable, :registerable,/, "devise :database_authenticatable, #:registerable,"
-gsub_file 'config/routes.rb', /devise_for :admins/, "get 'admin' => 'admin#index'\n\tdevise_for :admins, :skip => [:registration]"
+gsub_file 'config/routes.rb', /devise_for :admins/, "get 'admin' => 'admin#index'\n\tdevise_for :admins, :skip => [:registration]\n\tscope '/admin' do\n\tend\n\t"
 
 # devise layout
 gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Sign in"/, 'f.submit "Sign in", :class => "btn btn-primary"'
@@ -92,7 +92,6 @@ gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.asse
 
 # copy files
 directory 'lib', 'lib', :force => true
-directory 'script', 'script', :force => true
 directory 'views/kaminari', 'app/views/kaminari'
 directory 'locales', 'config/locales', :force => true
 directory 'stylesheets', 'app/assets/stylesheets'

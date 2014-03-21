@@ -1,25 +1,17 @@
 # coding: utf-8
-<%
-  def clean_word(str)
-    str1 = 'Admin::'
-    str2 = 'admin_'
-    str3 = 'Admin'
-    str.gsub(str1, '').gsub(str2, '').gsub(str3, '')
-  end
--%>
 <% if namespaced? -%>
 require_dependency "<%= namespaced_file_path %>/application_controller"
 
 <% end -%>
 <% module_namespacing do -%>
-class <%= controller_class_name %>Controller < <%= if singular_table_name.include?('admin_') then AdminController else ApplicationCntroller end %>
-  before_action :set_<%= clean_word singular_table_name %>, only: [:show, :edit, :update, :destroy]
+class <%= controller_class_name %>Controller < AdminController
+  before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
   # GET <%= route_url %>
   def index
-    @search_key = (<%= clean_word class_name -%>.column_names - ['id', 'created_at', 'updated_at']).join('_or_') + '_cont'
-    @search = <%= clean_word class_name -%>.search(params[:q])
-    @<%= clean_word plural_table_name %> = @search.result.page(params[:page])
+    @search_key = (<%= class_name -%>.column_names - ['id', 'created_at', 'updated_at']).join('_or_') + '_cont'
+    @search = <%= class_name -%>.search(params[:q])
+    @<%= plural_table_name %> = @search.result.page(params[:page])
   end
 
   # GET <%= route_url %>/1
@@ -28,7 +20,7 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
 
   # GET <%= route_url %>/new
   def new
-    @<%= clean_word singular_table_name %> = <%= clean_word orm_class.build(class_name) %>
+    @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
   end
 
   # GET <%= route_url %>/1/edit
@@ -37,10 +29,10 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
 
   # POST <%= route_url %>
   def create
-    @<%= clean_word singular_table_name %> = <%= clean_word orm_class.build(class_name, "#{singular_table_name}_params") %>
+    @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
 
-    if @<%= clean_word orm_instance.save %>
-      redirect_to <%= singular_table_name %>_path(@<%= clean_word singular_table_name %>.id), notice: t('admin.<%= clean_word singular_table_name %>.<%= clean_word singular_table_name %>') + t('admin.created_done')
+    if @<%= orm_instance.save %>
+      redirect_to <%= singular_table_name %>_path(@<%= singular_table_name %>.id), notice: t('admin.<%= singular_table_name %>.<%= singular_table_name %>') + t('admin.created_done')
     else
       render action: 'new'
     end
@@ -48,8 +40,8 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
 
   # PATCH/PUT <%= route_url %>/1
   def update
-    if @<%= clean_word orm_instance.update("#{singular_table_name}_params") %>
-      redirect_to <%= singular_table_name %>_path, notice: t('admin.<%= clean_word singular_table_name %>.<%= clean_word singular_table_name %>') + t('admin.updated_done')
+    if @<%= orm_instance.update("#{singular_table_name}_params") %>
+      redirect_to <%= singular_table_name %>_path, notice: t('admin.<%= singular_table_name %>.<%= singular_table_name %>') + t('admin.updated_done')
     else
       render action: 'edit'
     end
@@ -57,22 +49,22 @@ class <%= controller_class_name %>Controller < <%= if singular_table_name.includ
 
   # DELETE <%= route_url %>/1
   def destroy
-    @<%= clean_word orm_instance.destroy %>
-    redirect_to <%= table_name %>_path, notice: t('admin.<%= clean_word singular_table_name %>.<%= clean_word singular_table_name %>') + t('admin.deleted_done')
+    @<%= orm_instance.destroy %>
+    redirect_to <%= table_name %>_path, notice: t('admin.<%= singular_table_name %>.<%= singular_table_name %>') + t('admin.deleted_done')
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_<%= clean_word singular_table_name %>
-      @<%= clean_word singular_table_name %> = <%= clean_word orm_class.find(class_name, "params[:id]") %>
+    def set_<%= singular_table_name %>
+      @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
     end
 
     # Only allow a trusted parameter "white list" through.
-    def <%= clean_word "#{singular_table_name}_params" %>
+    def <%= "#{singular_table_name}_params" %>
       <%- if attributes_names.empty? -%>
-      params[<%= clean_word ":#{singular_table_name}" %>]
+      params[<%= ":#{singular_table_name}" %>]
       <%- else -%>
-      params.require(<%= clean_word ":#{singular_table_name}" %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+      params.require(<%= ":#{singular_table_name}" %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
       <%- end -%>
     end
 end

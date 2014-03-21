@@ -1,10 +1,18 @@
-<%%= form_for(@<%= singular_table_name %>, :html => {:class => 'form-horizontal', :role => 'form'} ) do |f| %>
-  <%% if @<%= singular_table_name %>.errors.any? %>
+<%%
+    if (@<%= singular_table_name.gsub('admin_', '') %>.id)
+      _form_url = <%= singular_table_name %>_path(@<%= singular_table_name.gsub('admin_', '') %>)
+    else
+      _form_url = <%= table_name %>_path
+    end
+-%>
+
+<%%= form_for(@<%= singular_table_name.gsub('admin_', '') %>, :url => _form_url, :html => {:class => 'form-horizontal', :role => 'form'} ) do |f| %>
+  <%% if @<%= singular_table_name.gsub('admin_', '') %>.errors.any? %>
     <div id="error_explanation">
-      <h2><%%= pluralize(@<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+      <h2><%%= pluralize(@<%= singular_table_name.gsub('admin_', '') %>.errors.count, "error") %> prohibited this <%= singular_table_name.gsub('admin_', '') %> from being saved:</h2>
 
       <ul>
-      <%% @<%= singular_table_name %>.errors.full_messages.each do |msg| %>
+      <%% @<%= singular_table_name.gsub('admin_', '') %>.errors.full_messages.each do |msg| %>
         <li><%%= msg %></li>
       <%% end %>
       </ul>
