@@ -22,9 +22,9 @@
     <tr>
       <th><%%= t('admin._no') %></th>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
-      <th><%= attribute.human_name %></th>
+      <th><%%= t('admin.<%= singular_table_name %>.<%= attribute.name %>') %></th>
 <% end -%>
-<th><%%= t('admin.action') %></th>
+      <th><%%= t('admin.action') %></th>
     </tr>
   </thead>
 
@@ -36,7 +36,7 @@
         </td>
         <% attributes.reject(&:password_digest?).each do |attribute| -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-<% end -%>
+        <% end -%>
         <td>
           <%%= link_to t('admin.show'), <%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-default btn-sm' %>
           <%%= link_to t('admin.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-default btn-sm' %>
