@@ -37,7 +37,7 @@
         <% attributes.reject(&:password_digest?).each do |attribute| -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
         <% end -%>
-        <td>
+        <td nowrap>
           <%%= link_to t('admin.show'), <%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-default btn-sm' %>
           <%%= link_to t('admin.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-default btn-sm' %>
           <%%= link_to t('admin.delete'), <%= singular_table_name %>_path(<%= singular_table_name %>), method: :delete, data: { confirm: t('admin.confirm_delete') }, :class => 'btn btn-danger btn-sm' %>
