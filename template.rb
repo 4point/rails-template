@@ -86,10 +86,9 @@ gsub_file 'app/views/devise/unlocks/new.html.erb', /f.submit "Resend unlock inst
 # scaffold without scaffold.css
 gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.assets.version = '1.0'\n    config.generators do |g|\n        g.stylesheets false\n    end"
 
-# fetch scaffold template
-#directory 'templates/scaffold', 'lib/templates/erb/scaffold'
-# fetch scaffold controller with kaminari
-#directory 'templates/scaffold_controller', 'lib/templates/rails/scaffold_controller'
+# add admin assets to production env
+gsub_file 'config/environments/production.rb', /# config.assets.precompile/, 'config.assets.precompile'
+gsub_file 'config/environments/production.rb', /search.js/, 'admin.css admin.js'
 
 # copy files
 directory 'lib', 'lib', :force => true
