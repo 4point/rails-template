@@ -86,6 +86,9 @@ gsub_file 'app/views/devise/unlocks/new.html.erb', /f.submit "Resend unlock inst
 # scaffold without scaffold.css
 gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.assets.version = '1.0'\n    config.generators do |g|\n        g.stylesheets false\n    end"
 
+# scaffold without test
+gsub_file 'config/application.rb', /# config.i18n.default_locale = :de/, "config.i18n.default_locale = 'zh-TW'\n    config.generators.assets = false\n    config.generators.helper = false\n    config.generators.test_framework = false"
+
 # add admin assets to production env
 gsub_file 'config/environments/production.rb', /# config.assets.precompile/, 'config.assets.precompile'
 gsub_file 'config/environments/production.rb', /search.js/, 'admin.css admin.js'
@@ -97,6 +100,10 @@ directory 'locales', 'config/locales', :force => true
 directory 'stylesheets', 'app/assets/stylesheets'
 directory 'javascripts', 'app/assets/javascripts', :force => true
 directory 'layouts', 'app/views/layouts', :force => true
+
+
+# sacffold gen
+generate('scaffold site_block key:string content:text note:string') # site blocks
 
 ## Route
 route "root 'page#index'"

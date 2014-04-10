@@ -16,3 +16,7 @@ zh-TW:
     updated_done: 更新成功
     deleted_done: 刪除成功
 
+    site_block:
+      key: 系統key(勿改)
+      content: 內容
+      note: 補充說明
