@@ -117,3 +117,6 @@ CODE
 git :init
 git :add => '.'
 git :commit => "-a -m 'init'"
+
+# Generate Guardfile
+run 'guard init'
