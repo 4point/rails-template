@@ -28,14 +28,13 @@ gsub_file 'Gemfile', /gem 'turbolinks'/, "# gem 'turbolinks'"
 gsub_file 'app/assets/javascripts/application.js', /= require turbolinks/, " require turbolinks"
 
 gem 'devise'
-gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
 gem 'ransack'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'mysql2'
 gem 'ckeditor_rails'
 gem 'kaminari'
-gem 'therubyracer' # or install nodejs
 gem 'simple_form'
 gem 'google-analytics-rails'
 gem_group :development, :test do
@@ -50,8 +49,6 @@ run 'bundle install'
 generate('devise:install')
 generate('devise Admin')
 generate('devise:views')
-generate('bootstrap:install')
-generate('bootstrap:layout', 'application fixed -f')
 generate('simple_form:install', '--bootstrap')
 generate('kaminari:config')
 rake 'db:migrate'
@@ -104,6 +101,7 @@ directory 'layouts', 'app/views/layouts', :force => true
 
 # sacffold gen
 generate('scaffold site_block key:string content:text note:string') # site blocks
+rake 'db:migrate'
 
 ## Route
 route "root 'page#index'"
