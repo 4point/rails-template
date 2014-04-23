@@ -27,6 +27,7 @@ generate(:controller, "admin index")
 gsub_file 'Gemfile', /gem 'turbolinks'/, "# gem 'turbolinks'"
 gsub_file 'app/assets/javascripts/application.js', /= require turbolinks/, " require turbolinks"
 
+gem 'haml-rails'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'ransack'
@@ -97,6 +98,7 @@ directory 'locales', 'config/locales', :force => true
 directory 'stylesheets', 'app/assets/stylesheets'
 directory 'javascripts', 'app/assets/javascripts', :force => true
 directory 'layouts', 'app/views/layouts', :force => true
+directory 'partials', 'app/views/partials', :force => true
 
 
 # sacffold gen
