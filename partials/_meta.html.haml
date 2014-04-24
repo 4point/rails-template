@@ -3,7 +3,7 @@
 	%meta{:'http-equiv' => "X-UA-Compatible", :content => "IE=Edge"}
 	%meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
 	= csrf_meta_tags
-	%title = content_for?(:title) ? yield(:title) : Settings.name
+	%title= content_for?(:title) ? yield(:title) : Settings.name
 	= stylesheet_link_tag "application", media: "all"
 	%link{:rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
 	/ = favicon_link_tag 'favicon.png', :rel => 'shortcut icon'

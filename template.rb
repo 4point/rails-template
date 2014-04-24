@@ -17,6 +17,7 @@ end
 
 copy_file 'helpers/application_helper.rb', 'app/helpers/application_helper.rb', :force => true
 copy_file 'initializers/settings.rb', 'config/initializers/settings.rb', :force => true
+copy_file 'initializers/assets.rb', 'config/initializers/assets.rb', :force => true
 
 ## Generator
 generate(:controller, "page index")
