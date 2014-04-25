@@ -1,0 +1,29 @@
+@import 'colors';
+
+ul.__inline {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	li {
+		display: inline-block;
+	}
+}
+
+.__hide {
+	display: none;
+}
+
+.__wrapper {
+	width: 960px;
+	margin: 0 auto;
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	margin: 0;
+	& > main {
+		flex: 1;
+	}
+}

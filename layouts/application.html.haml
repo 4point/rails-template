@@ -1,0 +1,8 @@
+!!! 5
+%html
+	= render "partials/meta"
+	%body
+		= render "partials/header"
+		%main.__wrapper
+			= yield
+		= render "partials/footer"

@@ -5,9 +5,11 @@ create_file "config/settings.yml", "name: '#{name}'"
 # no require_tree
 gsub_file 'app/assets/javascripts/application.js', /= require_tree/, " require_tree"
 gsub_file 'app/assets/stylesheets/application.css', /= require_tree/, " require_tree"
+inject_into_file 'app/assets/stylesheets/application.css', " *= require style\n", :after => " *= require_self\n"
 
 remove_file 'README.rdoc'
 remove_file 'public/favicon.ico'
+remove_file 'app/views/layouts/application.html.erb'
 
 ## Copy files
 # overwrite Thor's method, use this template's location
@@ -109,6 +111,9 @@ rake 'db:migrate'
 ## Route
 route "root 'page#index'"
 
+# Generate Guardfile
+run 'guard init'
+
 ## Git
 # ignore
 append_file '.gitignore', <<-CODE
@@ -120,6 +125,3 @@ CODE
 git :init
 git :add => '.'
 git :commit => "-a -m 'init'"
-
-# Generate Guardfile
-run 'guard init'
