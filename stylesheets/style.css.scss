@@ -33,6 +33,7 @@ body {
 		padding-top: 1em;
 	}
 	& > main {
+		display: block;	// For IE9 and IE10
 		flex: 1;
 	}
 	& > footer {
