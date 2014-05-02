@@ -1,0 +1,17 @@
+ul.__inline {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	li {
+		display: inline-block;
+	}
+}
+
+.__hide {
+	display: none;
+}
+
+.__wrapper {
+	width: 960px;
+	margin: 0 auto;
+}

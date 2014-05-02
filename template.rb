@@ -30,7 +30,7 @@ generate(:controller, "admin index")
 gsub_file 'Gemfile', /gem 'turbolinks'/, "# gem 'turbolinks'"
 gsub_file 'app/assets/javascripts/application.js', /= require turbolinks/, " require turbolinks"
 
-gem 'haml-rails'
+gem 'haml'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'ransack'

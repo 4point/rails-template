@@ -1,21 +1,24 @@
 @import 'colors';
+@import 'base';
+@import 'layout';
+@import 'module';
 
-ul.__inline {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	li {
-		display: inline-block;
-	}
+.panel {
+	@extend %panel;
 }
 
-.__hide {
-	display: none;
+a.button {
+	@extend %button;
+	display: inline-block;
+	font-size: 14px;
+	text-decoration: none;
+	line-height: 38px;
+	height: 38px;
+	min-width: 200px;
 }
 
-.__wrapper {
-	width: 960px;
-	margin: 0 auto;
+html {
+	background-color: $background-color;
 }
 
 body {
@@ -23,7 +26,21 @@ body {
 	min-height: 100vh;
 	flex-direction: column;
 	margin: 0;
+	font-size: 14px;
+	background-color: #fff;
+	color: $text-color;
+	& > header {
+		padding-top: 1em;
+	}
 	& > main {
 		flex: 1;
 	}
+	& > footer {
+		padding-top: 1em;
+		background-color: $background-color;
+	}
+}
+
+h1 {
+	margin-top: 0;
 }

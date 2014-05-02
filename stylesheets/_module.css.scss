@@ -1,0 +1,22 @@
+%button {
+	border-radius: 2px;
+	background-color: #5d9cec;
+	color: #fff;
+	border-bottom: 2px solid #064ca6;
+	text-align: center;
+	&:hover {
+		background-color: #4a89dc;
+		border-color: #03418f;
+	}
+	&:active {
+		background-color: #3c79ca;
+		border-bottom-color: #3c79ca;
+		box-shadow: inset 1px 1px 0 1px #014bac;
+	}
+}
+
+%panel {
+	border-radius: 2px;
+	box-shadow: 0 1px 2px 1px #aab2bd;
+	background-color: #fff;
+}
