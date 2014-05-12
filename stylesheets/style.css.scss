@@ -22,9 +22,6 @@ html {
 }
 
 body {
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
 	margin: 0;
 	font-size: 14px;
 	background-color: #fff;
@@ -34,7 +31,6 @@ body {
 	}
 	& > main {
 		display: block;	// For IE9 and IE10
-		flex: 1;
 	}
 	& > footer {
 		padding-top: 1em;

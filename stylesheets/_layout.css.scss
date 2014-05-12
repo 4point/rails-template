@@ -15,3 +15,14 @@ ul.__inline {
 	width: 960px;
 	margin: 0 auto;
 }
+
+@supports (display: flex) {
+	body {
+		display: flex;
+		min-height: 100vh;
+		flex-direction: column;
+		& > main {
+			flex-grow: 1;
+		}
+	}
+}
