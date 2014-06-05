@@ -1,6 +1,12 @@
 name = ask("What is the name of this site ?")
 create_file "config/settings.yml", "name: '#{name}'"
 
+# Create gemset
+run "rvm gemset create #{name}"
+
+# Add rvmrc file
+create_file ".rvmrc", "rvm #{RUBY_VERSION}@#{name}\n"
+
 ## Remove files
 # no require_tree
 gsub_file 'app/assets/javascripts/application.js', /= require_tree/, " require_tree"
