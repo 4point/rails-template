@@ -48,6 +48,7 @@ gem 'kaminari'
 gem 'simple_form'
 gem 'google-analytics-rails'
 gem_group :development, :test do
+  gem 'brakeman', require: false
   gem 'guard-livereload', require: false
   gem 'guard-rails', require: false
   gem 'meta_request'
