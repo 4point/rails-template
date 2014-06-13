@@ -47,6 +47,7 @@ gem 'ckeditor_rails'
 gem 'kaminari'
 gem 'simple_form'
 gem 'google-analytics-rails'
+gem 'activerecord-session_store'
 gem_group :development, :test do
   gem 'brakeman', require: false
   gem 'guard-livereload', require: false
@@ -71,6 +72,12 @@ rake 'db:seed'
 # add auth to default app controller
 copy_file 'controllers/application_controller.rb', 'app/controllers/application_controller.rb', :force => true
 copy_file 'controllers/admin_controller.rb', 'app/controllers/admin_controller.rb', :force => true
+
+# Generate session migration
+generate('active_record:session_migration')
+
+# Stores session in a database using Active Record
+gsub_file 'config/initializers/session_store.rb', "Rails.application.config.session_store :cookie_store, key: '_#{name}_session'", 'Rails.application.config.session_store :active_record_store'
 
 # kaminari per page 10
 gsub_file 'config/initializers/kaminari_config.rb', /# config.default_per_page = 25/, "config.default_per_page = 10"
