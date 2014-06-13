@@ -78,9 +78,13 @@ gsub_file 'config/initializers/kaminari_config.rb', /# config.default_per_page =
 # devise use :get to sign out
 gsub_file 'config/initializers/devise.rb', /config.sign_out_via = :delete/, "config.sign_out_via = :get"
 
-# cancel devise admin registration
+# cancel devise admin registration and customize controller
 gsub_file 'app/models/admin.rb', /devise :database_authenticatable, :registerable,/, "devise :database_authenticatable, #:registerable,"
-gsub_file 'config/routes.rb', /devise_for :admins/, "get 'admin' => 'admin#index'\n\tdevise_for :admins, :skip => [:registration]\n\tscope '/admin' do\n\tend\n\t"
+gsub_file 'config/routes.rb', /devise_for :admins/, "get 'admin' => 'admin#index'\n\tdevise_for :admins, :skip => [:registration], controllers: { sessions: \"admins/sessions\" }\n\tscope '/admin' do\n\tend\n\t"
+
+# Copy the custom controller
+copy_file 'controllers/admins/sessions_controller.rb', 'app/controllers/admins/sessions_controller.rb', :force => true
+copy_file 'controllers/concerns/admin_devise.rb', 'app/controllers/concerns/admin_devise.rb', :force => true
 
 # devise layout
 gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Sign in"/, 'f.submit "Sign in", :class => "btn btn-primary"'
