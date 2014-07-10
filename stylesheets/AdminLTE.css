@@ -14,7 +14,7 @@
 html,
 body {
   overflow-x: hidden!important;
-  font-family: Ubuntu, "Microsoft JhengHei", "STHeiti", "Heiti TC", SimSun, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Ubuntu, "STHeiti", "Heiti TC", "Microsoft JhengHei", SimSun, "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100%;
   background: #f9f9f9;
