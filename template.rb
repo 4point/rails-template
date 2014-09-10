@@ -50,6 +50,7 @@ gem 'google-analytics-rails'
 gem 'activerecord-session_store'
 gem_group :development, :test do
   gem 'brakeman', require: false
+  gem "rack-livereload"
   gem 'guard-livereload', require: false
   gem 'guard-rails', require: false
   gem 'meta_request'
@@ -111,6 +112,9 @@ gsub_file 'config/application.rb', /# config.i18n.default_locale = :de/, "config
 # add admin assets to production env
 gsub_file 'config/environments/production.rb', /# config.assets.precompile/, 'config.assets.precompile'
 gsub_file 'config/environments/production.rb', /search.js/, 'admin.css admin.js'
+
+# enable livereload
+gsub_file 'config/environments/development.rb', /application.configure do/, "application.configure do\n  config.middleware.use Rack::LiveReload"
 
 # copy files
 directory 'lib', 'lib', :force => true
