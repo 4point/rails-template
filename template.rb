@@ -95,13 +95,9 @@ copy_file 'controllers/admins/sessions_controller.rb', 'app/controllers/admins/s
 copy_file 'controllers/concerns/admin_devise.rb', 'app/controllers/concerns/admin_devise.rb', :force => true
 
 # devise layout
-gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Sign in"/, 'f.submit "Sign in", :class => "btn btn-primary"'
-gsub_file 'app/views/devise/sessions/new.html.erb', /f.submit "Send me reset password instructions"/, 'f.submit "Send me reset password instructions", :class => "btn btn-primary"'
-gsub_file 'app/views/devise/passwords/edit.html.erb', /f.submit "Change my password"/, 'f.submit "Change my password", :class => "btn btn-primary"'
-gsub_file 'app/views/devise/confirmations/new.html.erb', /f.submit "Resend confirmation instructions"/, 'f.submit "Resend confirmation instructions", :class => "btn btn-primary"'
-gsub_file 'app/views/devise/registrations/edit.html.erb', /f.submit "Update"/, 'f.submit "Update", :class => "btn btn-primary"'
-gsub_file 'app/views/devise/registrations/new.html.erb', /f.submit "Sign up"/, 'f.submit "Sign up", :class => "btn btn-primary"'
-gsub_file 'app/views/devise/unlocks/new.html.erb', /f.submit "Resend unlock instructions"/, 'f.submit "Resend unlock instructions", :class => "btn btn-primary"'
+gsub_file 'app/views/devise/sessions/new.html.erb', /f.input :email, required: false, autofocus: true/, 'f.input :email, required: false, autofocus: true, input_html: {class: "form-control"} '
+gsub_file 'app/views/devise/sessions/new.html.erb', /f.input :password, required: false/, 'f.input :password, required: false, input_html: {class: "form-control"} '
+gsub_file 'app/views/devise/passwords/new.html.erb', /f.input :email, required: true, autofocus: true/, 'f.input :email, required: true, autofocus: true, input_html: {class: "form-control"}'
 
 # scaffold without scaffold.css
 gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.assets.version = '1.0'\n    config.generators do |g|\n        g.stylesheets false\n    end"
