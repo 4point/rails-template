@@ -141,6 +141,7 @@ run 'guard init'
 append_file '.gitignore', <<-CODE
 *~
 *.swp
+.DS_Store
 CODE
 
 # init
