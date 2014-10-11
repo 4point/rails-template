@@ -42,28 +42,29 @@
                 <li><%= link_to "Sign out", destroy_admin_session_path %></li>
               </ul>
             </li>
-          </div><!--/.nav-collapse -->
-        </div>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
+    </div>
 
-      <div class="container">
-        <div class="row">
-          <% if flash[:notice] %><div class='alert alert-info'><%= notice %></div><% end %>
-          <% if flash[:alert] %><div class='alert alert-warning'><%= alert %></div><% end %>
-          <div class="col-xs-12 col-sm-6 col-md-8">
-            <%= yield %>
-          </div>
-        </div><!--/row-->
+    <div class="container">
+      <div class="row">
+        <% if flash[:notice] %><div class='alert alert-info'><%= notice %></div><% end %>
+        <% if flash[:alert] %><div class='alert alert-warning'><%= alert %></div><% end %>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+          <%= yield %>
+        </div>
+      </div><!--/row-->
 
-        <footer>
-          <p>&copy; <%= Settings.name %></p>
-        </footer>
+      <footer>
+        <p>&copy; <%= Settings.name %></p>
+      </footer>
 
-      </div> <!-- /container -->
+    </div> <!-- /container -->
 
-      <!-- Javascripts
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <%= javascript_include_tag "admin" %>
-    </body>
-  </html>
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "admin" %>
+  </body>
+</html>
