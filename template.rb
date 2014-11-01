@@ -99,6 +99,9 @@ gsub_file 'app/views/devise/sessions/new.html.erb', /f.input :email, required: f
 gsub_file 'app/views/devise/sessions/new.html.erb', /f.input :password, required: false/, 'f.input :password, required: false, input_html: {class: "form-control"} '
 gsub_file 'app/views/devise/passwords/new.html.erb', /f.input :email, required: true, autofocus: true/, 'f.input :email, required: true, autofocus: true, input_html: {class: "form-control"}'
 
+# set time_zone
+gsub_file 'config/application.rb', /# config.time_zone = 'Central Time \(US & Canada\)'/, "config.time_zone = 'Asia/Taipei'"
+
 # scaffold without scaffold.css
 gsub_file 'config/application.rb', /config.assets.version = '1.0'/, "config.assets.version = '1.0'\n    config.generators do |g|\n        g.stylesheets false\n    end"
 
