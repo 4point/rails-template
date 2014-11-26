@@ -4,7 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
 
+  before_filter :set_root_url
+
   protected
+
+  def set_root_url
+    # do not use HTTP_X_FORWARDED_HOST, will cause ip spoofing
+    host = env['HTTP_HOST'] || "#{env['SERVER_NAME'] || env['SERVER_ADDR']}:#{env['SERVER_PORT']}"
+    @_root_url = request.protocol + host
+    @_full_url = @_root_url + request.fullpath
+  end
 
   def layout_by_resource
     if devise_controller?
