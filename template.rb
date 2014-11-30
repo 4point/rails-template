@@ -1,3 +1,6 @@
+# bundle install first to fit new rails
+run 'bundle install'
+
 name = ask("What is the name of this site ?")
 create_file "config/settings.yml", "name: '#{name}'"
 
